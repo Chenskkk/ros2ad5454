@@ -27,10 +27,9 @@
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "can_talker");
-    ros::NodeHandle k;
-    ros::Publisher can_chatter_pub = k.advertise<ros_lawicel_canusb::CanMessage>("can_chatter", 1000);
+    ros::NodeHandle n;
+    ros::Publisher can_tx_pub = n.advertise<ros_lawicel_canusb::CanMessage>("can_tx", 1000);
     ros::Rate loop_rate(10);
-    int count = 0;
     while(ros::ok())
     {
         ros_lawicel_canusb::CanMessage msg;
@@ -38,7 +37,7 @@ int main(int argc, char **argv)
         ss << "a1234567 1 1 8";
         msg.data = ss.str();
         ROS_INFO("%s", msg.data.c_str());
-        can_chatter_pub.publish(msg);
+        can_tx.publish(msg);
         ros::spinOnce();
         loop_rate.sleep();
     }
