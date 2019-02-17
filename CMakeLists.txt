@@ -139,7 +139,10 @@ target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker ${PROJECT_NAME}_generate_messates_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
-add_dependencies(talker ${PROJECT_NAME}_generate_messates_cpp)
+add_dependencies(listener ${PROJECT_NAME}_generate_messates_cpp)
+add_executable(can_talker src/can_talker.cpp)
+target_link_libraries(can_talker ${catkin_LIBRARIES})
+add_dependencies(can_talker ${PROJECT_NAME}_generate_messates_cpp)
 
 
 ## Rename C++ executable without prefix

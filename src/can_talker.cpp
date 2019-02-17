@@ -21,7 +21,6 @@
 #include <linux/can/raw.h>
 
 #include "ros/ros.h"
-#include "data2msg.h"
 #include "ros_lawicel_canusb/CanMessage.h"
 
 int main(int argc, char **argv)
@@ -32,13 +31,16 @@ int main(int argc, char **argv)
     ros::Rate loop_rate(10);
     while(ros::ok())
     {
+
+
         ros_lawicel_canusb::CanMessage msg;
-        std::stringstream ss;
-        ss << "a1234567 1 1 8";
-        msg.data = ss.str();
-        ROS_INFO("%s", msg.data.c_str());
-        can_tx.publish(msg);
+        msg.data={1,2,3,4};
+        msg.id=123;
+        msg.extended=1;
+        msg.dlc=8;
+        can_tx_pub.publish(msg);
         ros::spinOnce();
         loop_rate.sleep();
     }
     return 0;
+}
