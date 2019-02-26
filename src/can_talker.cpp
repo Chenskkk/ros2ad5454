@@ -27,18 +27,20 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
     ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
-static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
+static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
-    static double g_current_velocity;
-    g_current_velocity = msg->twist.angular.z;
-    ROS_INFO("I heard: [%f]", g_current_velocity);
+    static double linear_speed;
+    static double angular_speed;
+    angular_speed = msg->twist.angular.z;
+    linear_speed = msg->twist.linear.x;
+    ROS_INFO("linear: [%f], angular:[%f]", linear_speed,angular_speed);
 }
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "can_talker");
     ros::NodeHandle n;
-    ros::Subscriber sub_twist_cmd = n.subscribe("twist_cmd",1000,currentVelCallback);
+    ros::Subscriber sub_twist_cmd = n.subscribe("twist_cmd",1000,TwistCallback);
     ros::Publisher can_tx_pub = n.advertise<ros_lawicel_canusb::CanMessage>("can_tx", 1000);
     ros::Rate loop_rate(10);
     while(ros::ok())
