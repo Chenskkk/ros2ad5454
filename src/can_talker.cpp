@@ -30,7 +30,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     static double g_current_velocity;
-    g_current_velocity = msg->twist.angular.z;
+    g_current_velocity = msg->twist.angular.x;
     ROS_INFO("I heard: [%d]", g_current_velocity);
 }
 
