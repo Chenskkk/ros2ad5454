@@ -23,16 +23,24 @@
 #include "ros/ros.h"
 #include "ros_lawicel_canusb/CanMessage.h"
 #include <geometry_msgs/TwistStamped.h>
-void chatterCallback(const std_msgs::String::ConstPtr& msg)
+void FloatPut(float Fdat,unsigned char *Buf,unsigned char Pos)
 {
-    ROS_INFO("I heard: [%s]", msg->data.c_str());
+    unsigned char *p;
+    
+    p = (unsigned char *)&Fdat;
+    Buf[Pos] = *p;
+    Buf[Pos+1] = *(p+1);
+    Buf[Pos+2] = *(p+2);
+    Buf[Pos+3] = *(p+3);
 }
+
 static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     static double linear_speed;
     static double angular_speed;
     angular_speed = msg->twist.angular.z;
     linear_speed = msg->twist.linear.x;
+    FloatPut(linear_speed);
     ROS_INFO("linear: [%f], angular:[%f]", linear_speed,angular_speed);
 }
 
@@ -46,8 +54,8 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         ros_lawicel_canusb::CanMessage msg;
-        msg.data={255, 2, 3, 4, 5, 6, 7, 'a'};
-        msg.id=123;
+        msg.data={Buf[0], 2, 3, 4, 5, 6, 7, 'a'};
+        msg.id=100;
         msg.extended=1;
         msg.dlc=8;
         can_tx_pub.publish(msg);
