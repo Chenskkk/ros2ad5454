@@ -31,6 +31,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     g_current_velocity = msg->twist.linear.x;
+    ROS_INFO("I heard: [%s]", g_current_velocity);
 }
 
 int main(int argc, char **argv)
