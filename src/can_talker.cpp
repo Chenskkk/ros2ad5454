@@ -23,13 +23,13 @@
 #include "ros/ros.h"
 #include "ros_lawicel_canusb/CanMessage.h"
 #include <geometry_msgs/TwistStamped.h>
-static double g_current_velocity;
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
     ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
+    static double g_current_velocity;
     g_current_velocity = msg->twist.angular.z;
     ROS_INFO("I heard: [%d]", g_current_velocity);
 }
