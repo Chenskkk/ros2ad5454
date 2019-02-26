@@ -22,11 +22,18 @@
 
 #include "ros/ros.h"
 #include "ros_lawicel_canusb/CanMessage.h"
+void chatterCallback(const std_msgs::String::ConstPtr& msg)
+{
+        ROS_INFO("I heard: [%s]", msg->data.c_str());
+
+}
+
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "can_talker");
     ros::NodeHandle n;
+    ros::Subscriber sub = n.subscribe("twist_cmd",1000,chatterCallback);
     ros::Publisher can_tx_pub = n.advertise<ros_lawicel_canusb::CanMessage>("can_tx", 1000);
     ros::Rate loop_rate(10);
     while(ros::ok())
@@ -34,7 +41,7 @@ int main(int argc, char **argv)
 
 
         ros_lawicel_canusb::CanMessage msg;
-        msg.data={1,2,3,4};
+        msg.data={255, 2, 3, 4, 5, 6, 7, 'a'};
         msg.id=123;
         msg.extended=1;
         msg.dlc=8;
