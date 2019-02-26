@@ -31,7 +31,7 @@ static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     static double g_current_velocity;
     g_current_velocity = msg->twist.angular.z;
-    ROS_INFO("I heard: [%d]", g_current_velocity);
+    ROS_INFO("I heard: [%f]", g_current_velocity);
 }
 
 int main(int argc, char **argv)
