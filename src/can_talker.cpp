@@ -30,7 +30,7 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 static void currentVelCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     static double g_current_velocity;
-    g_current_velocity = msg->twist.angular.x;
+    g_current_velocity = msg->twist.angular.z;
     ROS_INFO("I heard: [%d]", g_current_velocity);
 }
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "can_talker");
     ros::NodeHandle n;
-    ros::Subscriber sub = n.subscribe("twist_cmd",1000,currentVelCallback);
+    ros::Subscriber sub_twist_cmd = n.subscribe("twist_cmd",1000,currentVelCallback);
     ros::Publisher can_tx_pub = n.advertise<ros_lawicel_canusb::CanMessage>("can_tx", 1000);
     ros::Rate loop_rate(10);
     while(ros::ok())
