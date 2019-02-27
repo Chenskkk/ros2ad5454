@@ -37,7 +37,7 @@ static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
     if(angular_speed<0)
     {
         angular_flag=1;
-        angular_speed=-angular_flag;
+        angular_speed=-angular_speed;
     }
     else
     {
