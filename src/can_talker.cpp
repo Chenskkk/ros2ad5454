@@ -24,20 +24,11 @@
 #include "ros_lawicel_canusb/CanMessage.h"
 #include <geometry_msgs/TwistStamped.h>
 unsigned char tmp[4];
-float wTemp=3.3;
-char sBuf[4];
-char* temp;
-memset(sBuf,0,sizeof(sBuf));
-temp=(char*)(&wTemp);
-sBuf[0] = temp[0] ;
-sBuf[1] = temp[1];
-sBuf[2] = temp[2];
-sBuf[3] = temp[3];
+
 
 char a[100];
 float b = 1.234;
 sprintf(a, "%f", b);
-string result(a);
 
 void FloatPut(float Fdat,unsigned char *Buf,unsigned char Pos)
 {
@@ -69,7 +60,7 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         ros_lawicel_canusb::CanMessage msg;
-        msg.data={sBuf[0], sBuf[1] , sBuf[2] , sBuf[3] , 0, 0, 0, a[0]};
+        msg.data={sBuf[0], sBuf[1] , sBuf[2] , sBuf[3] , a[0], a[1], a[2], a[3]};
         msg.id=100;
         msg.extended=1;
         msg.dlc=8;
