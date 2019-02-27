@@ -26,15 +26,13 @@
 char tmp_linear[8];
 char tmp_angular[8];
 
-
 static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
 {
     static double linear_speed;
     static double angular_speed;
     angular_speed = msg->twist.angular.z;
     linear_speed = msg->twist.linear.x;
-    ROS_INFO("linear: [%f], angular:[%f]", linear_speed,angular_speed);
-    
+    ROS_INFO("\n linear: [%f], angular:[%f]", linear_speed,angular_speed);
     sprintf(tmp_linear, "%f", linear_speed);
     sprintf(tmp_angular, "%f", angular_speed);
 }
