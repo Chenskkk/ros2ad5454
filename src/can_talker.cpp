@@ -28,7 +28,7 @@ char sBuf[4];
 void FloatPut(float Fdat,unsigned char *Buf,unsigned char Pos)
 {
     unsigned char *p;
-    float wTemp=3.333;
+    float wTemp=3.33;
     
     char* temp;
     memset(sBuf,0,sizeof(sBuf));
