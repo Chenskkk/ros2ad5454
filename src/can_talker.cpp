@@ -23,8 +23,8 @@
 #include "ros/ros.h"
 #include "ros_lawicel_canusb/CanMessage.h"
 #include <geometry_msgs/TwistStamped.h>
-unsigned char tmp_linear[8];
-unsigned char tmp_angular[8];
+char tmp_linear[8];
+char tmp_angular[8];
 
 
 static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
