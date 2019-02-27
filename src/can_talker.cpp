@@ -34,16 +34,16 @@ static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
     angular_speed = msg->twist.angular.z;
     linear_speed = msg->twist.linear.x;
     ROS_INFO("\n linear: [%f], angular:[%f]", linear_speed,angular_speed);
-    if(angular_speed<0)
-    {
-        angular_flag=1;
-        angular_speed=-angular_speed;
-    }
-    else
-    {
-        angular_flag=0;
-        angular_speed=angular_speed;
-    }
+//    if(angular_speed<0)
+//    {
+//        angular_flag=1;
+//        angular_speed=-angular_speed;
+//    }
+//    else
+//    {
+//        angular_flag=0;
+//        angular_speed=angular_speed;
+//    }
     sprintf(tmp_linear, "%f", linear_speed);
     sprintf(tmp_angular, "%f", angular_speed);
 }
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         ros_lawicel_canusb::CanMessage msg;
-        msg.data={angular_flag, tmp_angular[0] , tmp_angular[2] , tmp_angular[3] , tmp_angular[4], tmp_angular[5], tmp_angular[6], tmp_angular[7]};
+        msg.data={tmp_angular[0], tmp_angular[1] , tmp_angular[2] , tmp_angular[3] , tmp_angular[4], tmp_angular[5], tmp_angular[6], tmp_angular[7]};
         msg.id=100;
         msg.extended=1;
         msg.dlc=8;
