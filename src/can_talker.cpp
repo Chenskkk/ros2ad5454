@@ -50,8 +50,8 @@ int main(int argc, char **argv)
         ros_lawicel_canusb::CanMessage msg;
         msg.data={tmp_angular[0], tmp_angular[1] , tmp_angular[2] , tmp_angular[3] , tmp_angular[4], tmp_angular[5], tmp_angular[6], tmp_angular[7]};
         msg.id=100;
-        msg.extended=1;
-        msg.dlc=8;
+        //msg.extended=1;
+        //msg.dlc=8;
         can_tx_pub.publish(msg);
         ros::spinOnce();
         loop_rate.sleep();
