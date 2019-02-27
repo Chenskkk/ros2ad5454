@@ -60,7 +60,7 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         ros_lawicel_canusb::CanMessage msg;
-        msg.data={sBuf[0], sBuf[1] , sBuf[2] , sBuf[3] , a[0], a[1], a[2], a[3]};
+        msg.data={0, 0 , 0 , 0 , a[0], a[1], a[2], a[3]};
         msg.id=100;
         msg.extended=1;
         msg.dlc=8;
