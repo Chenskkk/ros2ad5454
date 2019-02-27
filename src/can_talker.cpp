@@ -24,11 +24,12 @@
 #include "ros_lawicel_canusb/CanMessage.h"
 #include <geometry_msgs/TwistStamped.h>
 unsigned char tmp[4];
+char sBuf[4];
 void FloatPut(float Fdat,unsigned char *Buf,unsigned char Pos)
 {
     unsigned char *p;
     float wTemp=3.3;
-    char sBuf[4];
+    
     char* temp;
     memset(sBuf,0,sizeof(sBuf));
     temp=(char*)(&wTemp);
