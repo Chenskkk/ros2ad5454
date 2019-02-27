@@ -27,15 +27,15 @@ unsigned char tmp[4];
 void FloatPut(float Fdat,unsigned char *Buf,unsigned char Pos)
 {
     unsigned char *p;
-       float wTemp=3.3;
-       char sBuf[4];
-       char* temp;
-       memset(sBuf,0,sizeof(sBuf));
-       temp=(char*)(&wTemp);
-       sBuf[0] = temp[0] ;
-       sBuf[1] = temp[1];
-       sBuf[2] = temp[2];
-       sBuf[3] = temp[3];
+    float wTemp=3.3;
+    char sBuf[4];
+    char* temp;
+    memset(sBuf,0,sizeof(sBuf));
+    temp=(char*)(&wTemp);
+    sBuf[0] = temp[0] ;
+    sBuf[1] = temp[1];
+    sBuf[2] = temp[2];
+    sBuf[3] = temp[3];
 
     p = (unsigned char *)&Fdat;
     Buf[Pos] = *p;
