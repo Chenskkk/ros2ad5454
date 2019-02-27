@@ -34,16 +34,6 @@ static void TwistCallback(const geometry_msgs::TwistStampedConstPtr &msg)
     angular_speed = msg->twist.angular.z;
     linear_speed = msg->twist.linear.x;
     ROS_INFO("\n linear: [%f], angular:[%f]", linear_speed,angular_speed);
-//    if(angular_speed<0)
-//    {
-//        angular_flag=1;
-//        angular_speed=-angular_speed;
-//    }
-//    else
-//    {
-//        angular_flag=0;
-//        angular_speed=angular_speed;
-//    }
     sprintf(tmp_linear, "%f", linear_speed);
     sprintf(tmp_angular, "%f", angular_speed);
 }
