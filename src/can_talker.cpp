@@ -47,12 +47,15 @@ int main(int argc, char **argv)
     ros::Rate loop_rate(10);
     while(ros::ok())
     {
-        ros_lawicel_canusb::CanMessage msg;
+        ros_lawicel_canusb::CanMessage msg,msg1;
         msg.data={tmp_angular[0], tmp_angular[1] , tmp_angular[2] , tmp_angular[3] , tmp_angular[4], tmp_angular[5], tmp_angular[6], tmp_angular[7]};
-        msg.id=100;
+        msg.id=50;
+        msg1.data={tmp_linear[0], tmp_linear[1] , tmp_linear[2] , tmp_linear[3] , tmp_linear[4], tmp_linear[5], tmp_linear[6], tmp_linear[7]};
+        msg1.id=51;
         //msg.extended=1;
         //msg.dlc=8;
         can_tx_pub.publish(msg);
+        can_tx_pub.publish(msg1);
         ros::spinOnce();
         loop_rate.sleep();
     }
