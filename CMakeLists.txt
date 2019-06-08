@@ -104,6 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
+
 #  INCLUDE_DIRS include
 #  LIBRARIES ros2ad5454
 #  CATKIN_DEPENDS ros_lawicel_canusb roscpp rospy std_msgs
@@ -143,7 +144,6 @@ add_dependencies(listener ${PROJECT_NAME}_generate_messates_cpp)
 add_executable(can_talker src/can_talker.cpp)
 target_link_libraries(can_talker ${catkin_LIBRARIES})
 add_dependencies(can_talker ${PROJECT_NAME}_generate_messates_cpp)
-
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
